@@ -1,5 +1,4 @@
-Alfred Workflow: Google Authenticator
-=====================================
+# Alfred Workflow: Google Authenticator
 
 [![Build Status](https://travis-ci.org/moul/alfred-workflow-gauth.svg?branch=master)](https://travis-ci.org/moul/alfred-workflow-gauth)
 
@@ -14,10 +13,25 @@ I personally use it on Gmail, Amazon AWS, Github, Facebook, Evernote and Dropbox
 
 A bigger list is available on [Wikipedia](http://en.wikipedia.org/wiki/Two-step_verification)
 
-Installation
-------------
+## Encryption
+
+This fork ads encryption to the stored secrets in the `~/.gauth` file, a default encryptionKey has been added in `encryptdecrypt.py`. If you want you can replace the encryptionKey with your own by running the below command and copy the output:
+
+```
+print("encryptionKey:", Fernet.generate_key().decode())
+```
+
+Make sure you have the right dependencies installed by running:
+
+```
+pip install cryptography
+```
+
+## Installation
 
 Create a `~/.gauth` file with your secrets, ie:
+
+Note! This fork expects the secret to be encrypted! Adding new secrets through alfred using `gauth add {account}, {secret}` will store secrets encrypted.
 
 ```ini
 [google - bob@gmail.com]
@@ -29,14 +43,12 @@ secret=yyyyyyyyyyyyyyyyyy
 
 [Download](https://github.com/moul/alfred-workflow-gauth/raw/master/Google%20Authenticator.alfredworkflow) and import to Alfred
 
-Dependencies
-------------
+## Dependencies
 
 - Alfred 2 or 3 with PowerPack
 - Python3
 
-Non-exhaustive list of links for "secret" installation
-------------------------------------------------------
+## Non-exhaustive list of links for "secret" installation
 
 - [Google](http://www.google.com/landing/2step/)
 - [Dropbox](https://www.dropbox.com/help/363/en)
@@ -45,21 +57,18 @@ Non-exhaustive list of links for "secret" installation
 - [Amazon AWS](http://aws.amazon.com/iam/details/mfa/)
 - [Facebook](https://www.facebook.com/settings?tab=security)
 
-Links
------
+## Links
 
 - [Packal: Gauth](http://www.packal.org/workflow/gauth)
 - [Official Forum Post](http://www.alfredforum.com/topic/4062-gauth-google-authenticator-time-based-two-factor-authentication/)
 - [Source Code](https://github.com/moul/alfred-workflow-gauth/)
 
-Development
------------
+## Development
 
-After modifying files locally, run `build.sh` to update the workflow file, and
+After modifying files locally, run `./bundle.sh` to update the workflow file, and
 commit the workflow file update to this repository.
 
-Acknowledgment
---------------
+## Acknowledgment
 
 - Original alarm clock icon
   - [Alex Auda Samora from The Noun Project](http://thenounproject.com/razerk/)
@@ -72,7 +81,10 @@ Acknowledgment
 - Serial contributor
   - [Gilberto Olimpio](https://github.com/golimpio)
 
-License
--------
+## License
 
 MIT
+
+```
+
+```

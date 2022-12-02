@@ -6,6 +6,7 @@ import time
 
 import alfred
 import otp
+import encryptdecrypt
 
 
 class AlfredGAuth(alfred.AlfredWorkflow):
@@ -52,6 +53,7 @@ class AlfredGAuth(alfred.AlfredWorkflow):
     def config_get_account_token(self, account):
         try:
             secret = self.config.get(account, 'secret')
+            secret = encryptdecrypt.decrypt(secret)
         except:
             secret = None
 
@@ -125,6 +127,7 @@ class AlfredGAuth(alfred.AlfredWorkflow):
         config_file = open(self.config_file, 'r+')
         try:
             self.config.add_section(account)
+            secret = encryptdecrypt.encrypt(secret)
             self.config.set(account, "secret", secret)
             self.config.write(config_file)
         except configparser.DuplicateSectionError:
