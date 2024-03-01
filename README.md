@@ -24,7 +24,13 @@ print("encryptionKey:", Fernet.generate_key().decode())
 Make sure you have the right dependencies installed by running:
 
 ```
-pip install cryptography
+pip3 install cryptography
+```
+
+If above command fails, try running the below command:
+
+```
+pip3 install cryptography --break-system-packages
 ```
 
 ## Installation
